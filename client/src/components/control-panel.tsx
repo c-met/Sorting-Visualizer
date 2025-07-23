@@ -62,15 +62,15 @@ export function ControlPanel({
           </Select>
           
           {currentAlgorithm && (
-            <div className="bg-gray-50 rounded-lg p-3 sm:p-4 text-xs sm:text-sm">
+            <div className="bg-muted dark:bg-muted rounded-lg p-3 sm:p-4 text-xs sm:text-sm">
               <div className="flex items-center space-x-2 mb-2">
                 <Info className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
-                <span className="font-medium">{currentAlgorithm.displayName}</span>
+                <span className="font-medium text-foreground dark:text-foreground">{currentAlgorithm.displayName}</span>
               </div>
-              <p className="text-gray-600 mb-2 leading-relaxed">{currentAlgorithm.description}</p>
+              <p className="text-muted-foreground dark:text-muted-foreground mb-2 leading-relaxed">{currentAlgorithm.description}</p>
               <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-0 text-xs">
-                <span className="text-gray-500">Time: <span className="font-medium">{currentAlgorithm.timeComplexity}</span></span>
-                <span className="text-gray-500">Space: <span className="font-medium">{currentAlgorithm.spaceComplexity}</span></span>
+                <span className="text-muted-foreground dark:text-muted-foreground">Time: <span className="font-medium">{currentAlgorithm.timeComplexity}</span></span>
+                <span className="text-muted-foreground dark:text-muted-foreground">Space: <span className="font-medium">{currentAlgorithm.spaceComplexity}</span></span>
               </div>
             </div>
           )}
@@ -84,7 +84,7 @@ export function ControlPanel({
         </CardHeader>
         <CardContent className="space-y-3 sm:space-y-4">
           <div>
-            <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">Array Size</label>
+            <label className="block text-xs sm:text-sm font-medium text-foreground dark:text-foreground mb-2">Array Size</label>
             <div className="space-y-2">
               <Slider
                 value={[arraySize]}
@@ -94,7 +94,7 @@ export function ControlPanel({
                 step={1}
                 className="w-full"
               />
-              <div className="flex justify-between text-xs text-gray-500">
+              <div className="flex justify-between text-xs text-muted-foreground dark:text-muted-foreground">
                 <span>10</span>
                 <span className="font-medium">{arraySize}</span>
                 <span>100</span>
@@ -103,7 +103,7 @@ export function ControlPanel({
           </div>
 
           <div>
-            <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">Animation Speed</label>
+            <label className="block text-xs sm:text-sm font-medium text-foreground dark:text-foreground mb-2">Animation Speed</label>
             <div className="space-y-2">
               <Slider
                 value={[animationSpeed]}
@@ -113,7 +113,7 @@ export function ControlPanel({
                 step={1}
                 className="w-full"
               />
-              <div className="flex justify-between text-xs text-gray-500">
+              <div className="flex justify-between text-xs text-muted-foreground dark:text-muted-foreground">
                 <span>Slow</span>
                 <span>Fast</span>
               </div>

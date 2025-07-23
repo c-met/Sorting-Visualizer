@@ -54,6 +54,15 @@
   --destructive: hsl(0, 63%, 31%);
   --destructive-foreground: hsl(210, 40%, 98%);
   --ring: hsl(212, 12%, 84%);
+
+  /* Dark mode custom colors for sorting visualizer */
+  --bar-default: hsl(207, 90%, 54%);
+  --bar-comparing: hsl(14, 88%, 55%);
+  --bar-swapping: hsl(45, 100%, 51%);
+  --bar-sorted: hsl(122, 39%, 49%);
+  --surface: hsl(217, 32%, 17%);
+  --text-primary: hsl(210, 40%, 98%);
+  --text-secondary: hsl(215, 20%, 65%);
 }
 
 @layer base {

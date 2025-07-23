@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BarChart } from '@/components/bar-chart';
 import { ControlPanel } from '@/components/control-panel';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { useSorting } from '@/hooks/use-sorting';
 import { algorithms } from '@/lib/sorting-algorithms';
 import { BarChart3, HelpCircle } from 'lucide-react';
@@ -29,21 +30,22 @@ export default function Home() {
   const currentAlgorithm = algorithms[algorithm];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background dark:bg-background">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
+      <header className="bg-card dark:bg-card shadow-sm border-b border-border dark:border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2 sm:space-x-3">
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <BarChart3 className="h-4 w-4 text-white" />
+                <BarChart3 className="h-4 w-4 text-primary-foreground" />
               </div>
-              <h1 className="text-lg sm:text-xl font-medium text-gray-900">Sorting Algorithm Visualizer</h1>
+              <h1 className="text-lg sm:text-xl font-medium text-foreground dark:text-foreground">Sorting Algorithm Visualizer</h1>
             </div>
             <div className="flex items-center space-x-2 sm:space-x-4">
-              <span className="hidden sm:inline text-sm text-gray-500">Educational Tool</span>
-              <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors">
-                <HelpCircle className="h-4 w-4 text-gray-500" />
+              <span className="hidden sm:inline text-sm text-muted-foreground dark:text-muted-foreground">Educational Tool</span>
+              <ThemeToggle />
+              <button className="p-2 rounded-lg hover:bg-muted dark:hover:bg-muted transition-colors">
+                <HelpCircle className="h-4 w-4 text-muted-foreground dark:text-muted-foreground" />
               </button>
             </div>
           </div>
@@ -81,22 +83,22 @@ export default function Home() {
                   <div className="grid grid-cols-2 sm:flex sm:items-center gap-2 sm:space-x-4 sm:gap-0">
                     <div className="flex items-center space-x-2">
                       <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'hsl(207, 90%, 54%)' }}></div>
-                      <span className="text-xs sm:text-sm text-gray-600">Unsorted</span>
+                      <span className="text-xs sm:text-sm text-muted-foreground dark:text-muted-foreground">Unsorted</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'hsl(14, 88%, 55%)' }}></div>
-                      <span className="text-xs sm:text-sm text-gray-600">Comparing</span>
+                      <span className="text-xs sm:text-sm text-muted-foreground dark:text-muted-foreground">Comparing</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'hsl(45, 100%, 51%)' }}></div>
-                      <span className="text-xs sm:text-sm text-gray-600">Swapping</span>
+                      <span className="text-xs sm:text-sm text-muted-foreground dark:text-muted-foreground">Swapping</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'hsl(122, 39%, 49%)' }}></div>
-                      <span className="text-xs sm:text-sm text-gray-600">Sorted</span>
+                      <span className="text-xs sm:text-sm text-muted-foreground dark:text-muted-foreground">Sorted</span>
                     </div>
                   </div>
-                  <div className="text-xs sm:text-sm font-medium text-gray-900 text-center sm:text-right">
+                  <div className="text-xs sm:text-sm font-medium text-foreground dark:text-foreground text-center sm:text-right">
                     {currentState.action}
                   </div>
                 </div>
@@ -109,7 +111,7 @@ export default function Home() {
                 <CardTitle className="text-lg sm:text-xl">
                   {currentAlgorithm ? currentAlgorithm.displayName : 'Algorithm'} Visualization
                 </CardTitle>
-                <p className="text-gray-600 text-xs sm:text-sm">
+                <p className="text-muted-foreground dark:text-muted-foreground text-xs sm:text-sm">
                   {currentState.action}
                 </p>
               </CardHeader>
@@ -127,14 +129,14 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-8 sm:mt-12">
+      <footer className="bg-card dark:bg-card border-t border-border dark:border-border mt-8 sm:mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0">
-            <div className="text-xs sm:text-sm text-gray-500 text-center sm:text-left">
+            <div className="text-xs sm:text-sm text-muted-foreground dark:text-muted-foreground text-center sm:text-left">
               Educational sorting algorithm visualizer for learning computational concepts
             </div>
             <div className="flex items-center justify-center sm:justify-end space-x-4">
-              <button className="text-gray-500 hover:text-primary transition-colors">
+              <button className="text-muted-foreground dark:text-muted-foreground hover:text-primary transition-colors">
                 <span className="sr-only">GitHub</span>
                 <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clipRule="evenodd" />
