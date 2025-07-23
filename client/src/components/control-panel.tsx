@@ -41,13 +41,13 @@ export function ControlPanel({
   const currentAlgorithm = algorithms[algorithm];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Algorithm Selection */}
       <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Algorithm Selection</CardTitle>
+        <CardHeader className="pb-3 sm:pb-6">
+          <CardTitle className="text-base sm:text-lg">Algorithm Selection</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 sm:space-y-4">
           <Select value={algorithm} onValueChange={onAlgorithmChange}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select algorithm" />
@@ -62,13 +62,13 @@ export function ControlPanel({
           </Select>
           
           {currentAlgorithm && (
-            <div className="bg-gray-50 rounded-lg p-4 text-sm">
+            <div className="bg-gray-50 rounded-lg p-3 sm:p-4 text-xs sm:text-sm">
               <div className="flex items-center space-x-2 mb-2">
-                <Info className="h-4 w-4 text-primary" />
+                <Info className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
                 <span className="font-medium">{currentAlgorithm.displayName}</span>
               </div>
-              <p className="text-gray-600 mb-2">{currentAlgorithm.description}</p>
-              <div className="flex justify-between text-xs">
+              <p className="text-gray-600 mb-2 leading-relaxed">{currentAlgorithm.description}</p>
+              <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-0 text-xs">
                 <span className="text-gray-500">Time: <span className="font-medium">{currentAlgorithm.timeComplexity}</span></span>
                 <span className="text-gray-500">Space: <span className="font-medium">{currentAlgorithm.spaceComplexity}</span></span>
               </div>
@@ -79,12 +79,12 @@ export function ControlPanel({
 
       {/* Array Controls */}
       <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Array Configuration</CardTitle>
+        <CardHeader className="pb-3 sm:pb-6">
+          <CardTitle className="text-base sm:text-lg">Array Configuration</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 sm:space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Array Size</label>
+            <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">Array Size</label>
             <div className="space-y-2">
               <Slider
                 value={[arraySize]}
@@ -103,7 +103,7 @@ export function ControlPanel({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Animation Speed</label>
+            <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">Animation Speed</label>
             <div className="space-y-2">
               <Slider
                 value={[animationSpeed]}
@@ -120,33 +120,34 @@ export function ControlPanel({
             </div>
           </div>
 
-          <Button onClick={onGenerateArray} className="w-full" variant="outline">
-            <Shuffle className="w-4 h-4 mr-2" />
-            Generate New Array
+          <Button onClick={onGenerateArray} className="w-full" variant="outline" size="sm">
+            <Shuffle className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+            <span className="text-xs sm:text-sm">Generate New Array</span>
           </Button>
         </CardContent>
       </Card>
 
       {/* Sorting Controls */}
       <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Sorting Controls</CardTitle>
+        <CardHeader className="pb-3 sm:pb-6">
+          <CardTitle className="text-base sm:text-lg">Sorting Controls</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-3">
+        <CardContent className="space-y-2 sm:space-y-3">
           <Button 
             onClick={isPlaying ? onPauseSorting : onStartSorting}
             className="w-full"
+            size="sm"
             style={{ backgroundColor: 'hsl(122, 39%, 49%)', color: 'white' }}
           >
             {isPlaying ? (
               <>
-                <Pause className="w-4 h-4 mr-2" />
-                Pause
+                <Pause className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+                <span className="text-xs sm:text-sm">Pause</span>
               </>
             ) : (
               <>
-                <Play className="w-4 h-4 mr-2" />
-                {isPaused ? 'Resume' : 'Start Sorting'}
+                <Play className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+                <span className="text-xs sm:text-sm">{isPaused ? 'Resume' : 'Start Sorting'}</span>
               </>
             )}
           </Button>
@@ -154,10 +155,11 @@ export function ControlPanel({
           <Button 
             onClick={onStopSorting}
             className="w-full"
+            size="sm"
             style={{ backgroundColor: 'hsl(14, 88%, 55%)', color: 'white' }}
           >
-            <Square className="w-4 h-4 mr-2" />
-            Stop & Reset
+            <Square className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+            <span className="text-xs sm:text-sm">Stop & Reset</span>
           </Button>
           
           <Button 
@@ -165,9 +167,10 @@ export function ControlPanel({
             disabled={!canStepForward || isPlaying}
             className="w-full"
             variant="outline"
+            size="sm"
           >
-            <SkipForward className="w-4 h-4 mr-2" />
-            Step Forward
+            <SkipForward className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+            <span className="text-xs sm:text-sm">Step Forward</span>
           </Button>
         </CardContent>
       </Card>

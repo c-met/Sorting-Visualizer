@@ -18,8 +18,8 @@ export function BarChart({ array, comparing, swapping, sorted }: BarChartProps) 
   };
 
   return (
-    <div className="relative h-96 bg-gray-50 rounded-lg p-4 overflow-hidden">
-      <div className="flex items-end justify-center h-full space-x-1">
+    <div className="relative h-64 sm:h-80 lg:h-96 bg-gray-50 rounded-lg p-2 sm:p-4 overflow-hidden">
+      <div className="flex items-end justify-center h-full space-x-0.5 sm:space-x-1">
         {array.map((value, index) => {
           const height = Math.max((value / maxValue) * 100, 5);
           const state = getBarState(index);
@@ -28,7 +28,7 @@ export function BarChart({ array, comparing, swapping, sorted }: BarChartProps) 
             <div
               key={index}
               className={cn(
-                "bar-element flex-1 max-w-8 rounded-t-md relative group cursor-pointer",
+                "bar-element flex-1 max-w-4 sm:max-w-6 lg:max-w-8 rounded-t-md relative group cursor-pointer",
                 {
                   'bar-default': state === 'default',
                   'bar-comparing': state === 'comparing',
@@ -36,9 +36,9 @@ export function BarChart({ array, comparing, swapping, sorted }: BarChartProps) 
                   'bar-sorted': state === 'sorted'
                 }
               )}
-              style={{ height: `${height}%`, minHeight: '20px' }}
+              style={{ height: `${height}%`, minHeight: '15px' }}
             >
-              <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity z-10">
+              <div className="absolute -top-6 sm:-top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-1 sm:px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity z-10 whitespace-nowrap">
                 <span>{value}</span>
               </div>
             </div>
@@ -46,10 +46,10 @@ export function BarChart({ array, comparing, swapping, sorted }: BarChartProps) 
         })}
       </div>
       
-      <div className="flex items-center justify-center mt-4 space-x-1">
+      <div className="flex items-center justify-center mt-2 sm:mt-4 space-x-0.5 sm:space-x-1">
         {array.map((_, index) => (
-          <div key={index} className="flex-1 max-w-8 text-center">
-            <span className="text-xs text-gray-500">{index}</span>
+          <div key={index} className="flex-1 max-w-4 sm:max-w-6 lg:max-w-8 text-center">
+            <span className="text-xs text-gray-500 hidden sm:inline">{index}</span>
           </div>
         ))}
       </div>
