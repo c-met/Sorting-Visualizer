@@ -1,7 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BarChart } from '@/components/bar-chart';
 import { ControlPanel } from '@/components/control-panel';
-import { StatisticsPanel } from '@/components/statistics-panel';
 import { useSorting } from '@/hooks/use-sorting';
 import { algorithms } from '@/lib/sorting-algorithms';
 import { BarChart3, HelpCircle } from 'lucide-react';
@@ -17,8 +16,6 @@ export default function Home() {
     setAnimationSpeed,
     isPlaying,
     isPaused,
-    stats,
-    stepHistory,
     getCurrentState,
     generateNewArray,
     startSorting,
@@ -73,9 +70,6 @@ export default function Home() {
               onStopSorting={stopSorting}
               onStepForward={stepForward}
             />
-            <div className="mt-6">
-              <StatisticsPanel stats={stats} stepHistory={stepHistory} />
-            </div>
           </div>
 
           {/* Visualization Area */}
