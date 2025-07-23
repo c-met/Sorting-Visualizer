@@ -46,11 +46,17 @@ The application follows a monorepo structure with clear separation between clien
 
 ## Data Flow
 
+### Latest Updates (January 2025)
+- **Java-Style Algorithms**: Converted all sorting algorithms to use Java programming patterns with explicit type declarations, manual swapping, and traditional loop structures
+- **Dark Mode Implementation**: Added comprehensive dark/light theme toggle with localStorage persistence and system preference detection
+- **Export Functionality**: Added export dialog allowing users to download array data (JSON/CSV), Java source code, and analysis reports
+
+### Core Data Flow
 1. **User Interaction**: Control panel updates trigger state changes in the sorting hook
-2. **Algorithm Execution**: Selected sorting algorithm generates step-by-step instructions
+2. **Algorithm Execution**: Selected sorting algorithm generates step-by-step instructions using Java-style implementations
 3. **Animation Loop**: Timer-controlled execution of sorting steps with configurable speed
 4. **Visual Updates**: Bar chart reflects current array state with color-coded element states
-5. **Statistics Tracking**: Real-time updates of performance metrics and progress
+5. **Export Capabilities**: Users can export current state, algorithm code, or comprehensive reports
 
 ## External Dependencies
 

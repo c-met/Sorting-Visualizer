@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BarChart } from '@/components/bar-chart';
 import { ControlPanel } from '@/components/control-panel';
 import { ThemeToggle } from '@/components/theme-toggle';
+import { ExportDialog } from '@/components/export-dialog';
 import { useSorting } from '@/hooks/use-sorting';
 import { algorithms } from '@/lib/sorting-algorithms';
 import { BarChart3, HelpCircle } from 'lucide-react';
@@ -17,6 +18,7 @@ export default function Home() {
     setAnimationSpeed,
     isPlaying,
     isPaused,
+    stats,
     getCurrentState,
     generateNewArray,
     startSorting,
@@ -43,6 +45,13 @@ export default function Home() {
             </div>
             <div className="flex items-center space-x-2 sm:space-x-4">
               <span className="hidden sm:inline text-sm text-muted-foreground dark:text-muted-foreground">Educational Tool</span>
+              <ExportDialog 
+                array={currentState.array}
+                algorithm={algorithm}
+                currentStep={stats.progress}
+                totalSteps={100}
+                isRunning={isPlaying}
+              />
               <ThemeToggle />
               <button className="p-2 rounded-lg hover:bg-muted dark:hover:bg-muted transition-colors">
                 <HelpCircle className="h-4 w-4 text-muted-foreground dark:text-muted-foreground" />
