@@ -2,10 +2,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BarChart } from '@/components/bar-chart';
 import { ControlPanel } from '@/components/control-panel';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { ExportDialog } from '@/components/export-dialog';
 import { useSorting } from '@/hooks/use-sorting';
 import { algorithms } from '@/lib/sorting-algorithms';
-import { BarChart3, HelpCircle } from 'lucide-react';
+import { RollerCoaster, HelpCircle } from 'lucide-react';
+import React, { Suspense, useState } from 'react';
+import avatarImg from './avatar.webp';
+
+
 
 export default function Home() {
   const {
@@ -18,7 +21,6 @@ export default function Home() {
     setAnimationSpeed,
     isPlaying,
     isPaused,
-    stats,
     getCurrentState,
     generateNewArray,
     startSorting,
@@ -30,32 +32,22 @@ export default function Home() {
 
   const currentState = getCurrentState();
   const currentAlgorithm = algorithms[algorithm];
+  const [showHelp, setShowHelp] = useState(false);
 
   return (
     <div className="min-h-screen bg-background dark:bg-background">
-      {/* Header */}
       <header className="bg-card dark:bg-card shadow-sm border-b border-border dark:border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2 sm:space-x-3">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <BarChart3 className="h-4 w-4 text-primary-foreground" />
+            <div className="w-12 h-12 bg-transparent rounded-lg flex items-center justify-center">
+                <RollerCoaster className="h-8 w-8 text-blue-600" />
               </div>
-              <h1 className="text-lg sm:text-xl font-medium text-foreground dark:text-foreground">Sorting Algorithm Visualizer</h1>
+              <h1 className="text-lg sm:text-xl font-medium text-foreground dark:text-foreground">Sorting Visualizer</h1>
             </div>
             <div className="flex items-center space-x-2 sm:space-x-4">
-              <span className="hidden sm:inline text-sm text-muted-foreground dark:text-muted-foreground">Educational Tool</span>
-              <ExportDialog 
-                array={currentState.array}
-                algorithm={algorithm}
-                currentStep={stats.progress}
-                totalSteps={100}
-                isRunning={isPlaying}
-              />
               <ThemeToggle />
-              <button className="p-2 rounded-lg hover:bg-muted dark:hover:bg-muted transition-colors">
-                <HelpCircle className="h-4 w-4 text-muted-foreground dark:text-muted-foreground" />
-              </button>
+              
             </div>
           </div>
         </div>
@@ -63,7 +55,6 @@ export default function Home() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
         <div className="flex flex-col lg:grid lg:grid-cols-4 gap-4 sm:gap-6">
-          {/* Control Panel */}
           <div className="lg:col-span-1 order-2 lg:order-1">
             <ControlPanel
               algorithm={algorithm}
@@ -81,11 +72,43 @@ export default function Home() {
               onStopSorting={stopSorting}
               onStepForward={stepForward}
             />
+            {/* Additional grid for mobile devices, under the array config grid */}
+            <div className="grid lg:hidden grid-cols-1 gap-4 mt-6">
+              <Card>
+                <CardContent>
+                  <div className="flex items-start">
+                    <div className="flex-1 mt-2 text-sm text-muted-foreground">
+                    If you have any questions, please contact me.
+                    </div>
+                    <div className="flex flex-row items-center gap-3 mt-2">
+                        {/* LinkedIn Icon */}
+                        <a href="https://www.linkedin.com/in/soumikg60" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 448 512" fill="currentColor" className="text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-400 transition-colors">
+                            <path d="M100.28 448H7.4V148.9h92.88zm-46.44-340.7C24.12 107.3 0 83.2 0 53.6A53.6 53.6 0 0 1 53.6 0a53.6 53.6 0 0 1 53.6 53.6c0 29.6-24.12 53.7-53.36 53.7zM447.8 448h-92.4V302.4c0-34.7-12.4-58.4-43.3-58.4-23.6 0-37.6 15.9-43.7 31.3-2.3 5.6-2.8 13.4-2.8 21.2V448h-92.4s1.2-242.1 0-267.1h92.4v37.9c12.3-19 34.3-46.1 83.5-46.1 60.9 0 106.7 39.8 106.7 125.4V448z"/>
+                          </svg>
+                        </a>
+                        {/* Gmail Icon */}
+                        <a href="mailto:soumikgh60@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Gmail">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" className="text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-400 transition-colors">
+                            <path d="M2 4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4zm2 0v.01L12 13l8-8.99V4H4zm16 2.41l-7.29 7.3a1 1 0 0 1-1.42 0L4 6.41V20h16V6.41z"/>
+                          </svg>
+                        </a>
+                      </div>
+                    <div className="relative">
+                      <img
+                        src={avatarImg}
+                        alt="Avatar"
+                        className="w-20 h-20 ml-4 object-cover bg-white dark:bg-card border-none lg:w-40 lg:h-40 lg:-mt-16"
+                        style={{ zIndex: 10 }}
+                      />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
 
-          {/* Visualization Area */}
           <div className="lg:col-span-3 order-1 lg:order-2">
-            {/* Status Header */}
             <Card className="mb-4 sm:mb-6">
               <CardContent className="p-3 sm:p-4">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
@@ -114,7 +137,6 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            {/* Main Visualization */}
             <Card>
               <CardHeader className="pb-3 sm:pb-6">
                 <CardTitle className="text-lg sm:text-xl">
@@ -133,28 +155,57 @@ export default function Home() {
                 />
               </CardContent>
             </Card>
+            {/* New single-column grid at the bottom of the right column, with a large gap, hidden on mobile */}
+            <div className="hidden lg:grid grid-cols-1 gap-4 mt-24">
+              <Card>
+          
+                <CardContent>
+                
+                  <div className="flex items-start">
+                    <div className="flex-1 ml-2 mt-2 text-sm text-muted-foreground hidden lg:block">
+                      This is a project that helps people learn about sorting algorithms. If you have any questions, please contact me.
+                      <div className="flex flex-row items-center gap-3 mt-2">
+                        {/* LinkedIn Icon */}
+                        <a href="https://www.linkedin.com/in/soumikg60" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 448 512" fill="currentColor" className="text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-400 transition-colors">
+                            <path d="M100.28 448H7.4V148.9h92.88zm-46.44-340.7C24.12 107.3 0 83.2 0 53.6A53.6 53.6 0 0 1 53.6 0a53.6 53.6 0 0 1 53.6 53.6c0 29.6-24.12 53.7-53.36 53.7zM447.8 448h-92.4V302.4c0-34.7-12.4-58.4-43.3-58.4-23.6 0-37.6 15.9-43.7 31.3-2.3 5.6-2.8 13.4-2.8 21.2V448h-92.4s1.2-242.1 0-267.1h92.4v37.9c12.3-19 34.3-46.1 83.5-46.1 60.9 0 106.7 39.8 106.7 125.4V448z"/>
+                          </svg>
+                        </a>
+                        {/* Gmail Icon */}
+                        <a href="mailto:soumikgh60@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Gmail">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" className="text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-400 transition-colors">
+                            <path d="M2 4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4zm2 0v.01L12 13l8-8.99V4H4zm16 2.41l-7.29 7.3a1 1 0 0 1-1.42 0L4 6.41V20h16V6.41z"/>
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                   
+                    <div className="relative">
+                      <img
+                        src={avatarImg}
+                        alt="Avatar"
+                        className="w-20 h-20 lg:w-40 lg:h-40 -mt-8 lg:-mt-16 ml-4 object-cover bg-white dark:bg-card border-none"
+                        style={{ zIndex: 10 }}
+                      />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Footer */}
       <footer className="bg-card dark:bg-card border-t border-border dark:border-border mt-8 sm:mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0">
             <div className="text-xs sm:text-sm text-muted-foreground dark:text-muted-foreground text-center sm:text-left">
               Educational sorting algorithm visualizer for learning computational concepts
             </div>
-            <div className="flex items-center justify-center sm:justify-end space-x-4">
-              <button className="text-muted-foreground dark:text-muted-foreground hover:text-primary transition-colors">
-                <span className="sr-only">GitHub</span>
-                <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clipRule="evenodd" />
-                </svg>
-              </button>
-            </div>
           </div>
         </div>
       </footer>
+      
     </div>
   );
 }

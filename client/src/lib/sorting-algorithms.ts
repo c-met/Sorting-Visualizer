@@ -1,17 +1,3 @@
-/**
- * JAVA-STYLE SORTING ALGORITHMS IMPLEMENTATION
- * 
- * This file contains sorting algorithms implemented using Java programming patterns and conventions:
- * - Explicit type declarations (like Java's int[] arr)
- * - Manual swapping with temporary variables (Java style)
- * - Detailed comments explaining Java equivalents
- * - Recursive helper methods (Java style)
- * - Traditional loop structures with explicit variable declarations
- * - Method naming conventions similar to Java
- * 
- * While written in TypeScript for web compatibility, the logic follows Java conventions.
- */
-
 export interface SortStep {
   array: number[];
   comparing: number[];
@@ -70,17 +56,14 @@ export function generateRandomArray(size: number): number[] {
   return Array.from({ length: size }, () => Math.floor(Math.random() * 300) + 10);
 }
 
-// Java-style Bubble Sort implementation
 export function bubbleSort(array: number[]): SortStep[] {
   const steps: SortStep[] = [];
-  const arr: number[] = [...array]; // Java: int[] arr = array.clone();
+  const arr: number[] = [...array];
   const n: number = arr.length;
   const sorted: number[] = [];
 
-  // Java-style nested loops with explicit variable declarations
   for (let i: number = 0; i < n - 1; i++) {
     for (let j: number = 0; j < n - i - 1; j++) {
-      // Add comparison step
       steps.push({
         array: [...arr],
         comparing: [j, j + 1],
@@ -89,9 +72,7 @@ export function bubbleSort(array: number[]): SortStep[] {
         action: `Comparing elements at positions ${j} and ${j + 1}`
       });
 
-      // Java-style comparison and swap
       if (arr[j] > arr[j + 1]) {
-        // Manual swap (Java style: temp variable)
         const temp: number = arr[j];
         arr[j] = arr[j + 1];
         arr[j + 1] = temp;
@@ -120,18 +101,14 @@ export function bubbleSort(array: number[]): SortStep[] {
   return steps;
 }
 
-// Java-style Selection Sort implementation
 export function selectionSort(array: number[]): SortStep[] {
   const steps: SortStep[] = [];
-  const arr: number[] = [...array]; // Java: int[] arr = array.clone();
+  const arr: number[] = [...array];
   const n: number = arr.length;
   const sorted: number[] = [];
 
-  // Java-style outer loop
   for (let i: number = 0; i < n - 1; i++) {
-    let minIdx: number = i; // Find minimum element index
-    
-    // Java-style inner loop to find minimum
+    let minIdx: number = i; 
     for (let j: number = i + 1; j < n; j++) {
       steps.push({
         array: [...arr],
@@ -141,13 +118,11 @@ export function selectionSort(array: number[]): SortStep[] {
         action: `Comparing elements at positions ${minIdx} and ${j}, finding minimum`
       });
 
-      // Java-style comparison
       if (arr[j] < arr[minIdx]) {
         minIdx = j;
       }
     }
 
-    // Java-style swap if needed
     if (minIdx !== i) {
       const temp: number = arr[i];
       arr[i] = arr[minIdx];
@@ -177,17 +152,15 @@ export function selectionSort(array: number[]): SortStep[] {
   return steps;
 }
 
-// Java-style Insertion Sort implementation
 export function insertionSort(array: number[]): SortStep[] {
   const steps: SortStep[] = [];
-  const arr: number[] = [...array]; // Java: int[] arr = array.clone();
+  const arr: number[] = [...array];
   const n: number = arr.length;
   const sorted: number[] = [0];
 
-  // Java-style main loop starting from second element
   for (let i: number = 1; i < n; i++) {
-    const key: number = arr[i]; // Current element to be inserted
-    let j: number = i - 1;       // Start from previous element
+    const key: number = arr[i]; 
+    let j: number = i - 1;      
 
     steps.push({
       array: [...arr],
@@ -197,7 +170,6 @@ export function insertionSort(array: number[]): SortStep[] {
       action: `Inserting element ${key} into sorted portion`
     });
 
-    // Java-style while loop to shift elements
     while (j >= 0 && arr[j] > key) {
       steps.push({
         array: [...arr],
@@ -207,7 +179,6 @@ export function insertionSort(array: number[]): SortStep[] {
         action: `Comparing ${arr[j]} with ${key}`
       });
 
-      // Java-style element shift
       arr[j + 1] = arr[j];
       steps.push({
         array: [...arr],
@@ -216,10 +187,9 @@ export function insertionSort(array: number[]): SortStep[] {
         sorted: [...sorted],
         action: `Moving ${arr[j + 1]} one position right`
       });
-      j--; // Move to previous element
+      j--; 
     }
 
-    // Java-style insertion
     arr[j + 1] = key;
     sorted.push(i);
     
@@ -243,16 +213,14 @@ export function insertionSort(array: number[]): SortStep[] {
   return steps;
 }
 
-// Java-style Quick Sort implementation with recursive helper methods
 export function quickSort(array: number[]): SortStep[] {
   const steps: SortStep[] = [];
-  const arr: number[] = [...array]; // Java: int[] arr = array.clone();
+  const arr: number[] = [...array];
   const sorted: Set<number> = new Set();
 
-  // Java-style partition method
   function partition(low: number, high: number): number {
-    const pivot: number = arr[high]; // Choose last element as pivot
-    let i: number = low - 1;         // Index of smaller element
+    const pivot: number = arr[high]; 
+    let i: number = low - 1;        
 
     steps.push({
       array: [...arr],
@@ -262,7 +230,6 @@ export function quickSort(array: number[]): SortStep[] {
       action: `Choosing pivot ${pivot} at position ${high}`
     });
 
-    // Java-style partitioning loop
     for (let j: number = low; j < high; j++) {
       steps.push({
         array: [...arr],
@@ -272,11 +239,9 @@ export function quickSort(array: number[]): SortStep[] {
         action: `Comparing ${arr[j]} with pivot ${pivot}`
       });
 
-      // Java-style comparison and swap
       if (arr[j] < pivot) {
         i++;
         if (i !== j) {
-          // Manual swap (Java style)
           const temp: number = arr[i];
           arr[i] = arr[j];
           arr[j] = temp;
@@ -292,7 +257,6 @@ export function quickSort(array: number[]): SortStep[] {
       }
     }
 
-    // Place pivot in correct position (Java style)
     const temp: number = arr[i + 1];
     arr[i + 1] = arr[high];
     arr[high] = temp;
@@ -309,18 +273,14 @@ export function quickSort(array: number[]): SortStep[] {
     return i + 1;
   }
 
-  // Java-style recursive helper method
   function quickSortRecursive(low: number, high: number): void {
     if (low < high) {
-      const partitionIndex: number = partition(low, high);
-      quickSortRecursive(low, partitionIndex - 1);  // Sort left subarray
-      quickSortRecursive(partitionIndex + 1, high); // Sort right subarray
-    } else if (low === high) {
-      sorted.add(low);
+      const pi: number = partition(low, high);
+      quickSortRecursive(low, pi - 1);
+      quickSortRecursive(pi + 1, high);
     }
   }
 
-  // Java-style method call
   quickSortRecursive(0, arr.length - 1);
 
   steps.push({
@@ -334,21 +294,18 @@ export function quickSort(array: number[]): SortStep[] {
   return steps;
 }
 
-// Java-style Merge Sort implementation with divide and conquer
 export function mergeSort(array: number[]): SortStep[] {
   const steps: SortStep[] = [];
-  const arr: number[] = [...array]; // Java: int[] arr = array.clone();
+  const arr: number[] = [...array];
   const sorted: Set<number> = new Set();
 
-  // Java-style merge method to combine two sorted subarrays
   function merge(left: number, mid: number, right: number): void {
-    // Create temporary arrays (Java style)
     const leftArr: number[] = arr.slice(left, mid + 1);
     const rightArr: number[] = arr.slice(mid + 1, right + 1);
     
-    let i: number = 0;     // Initial index of left subarray
-    let j: number = 0;     // Initial index of right subarray  
-    let k: number = left;  // Initial index of merged subarray
+    let i: number = 0;    
+    let j: number = 0;    
+    let k: number = left; 
 
     steps.push({
       array: [...arr],
@@ -358,7 +315,6 @@ export function mergeSort(array: number[]): SortStep[] {
       action: `Merging subarrays from ${left} to ${mid} and ${mid + 1} to ${right}`
     });
 
-    // Java-style merge loop
     while (i < leftArr.length && j < rightArr.length) {
       steps.push({
         array: [...arr],
@@ -368,7 +324,6 @@ export function mergeSort(array: number[]): SortStep[] {
         action: `Comparing ${leftArr[i]} and ${rightArr[j]}`
       });
 
-      // Java-style comparison and assignment
       if (leftArr[i] <= rightArr[j]) {
         arr[k] = leftArr[i];
         i++;
@@ -387,42 +342,32 @@ export function mergeSort(array: number[]): SortStep[] {
       });
     }
 
-    // Copy remaining elements of left array (Java style)
     while (i < leftArr.length) {
       arr[k] = leftArr[i];
       i++;
       k++;
     }
 
-    // Copy remaining elements of right array (Java style)
     while (j < rightArr.length) {
       arr[k] = rightArr[j];
       j++;
       k++;
     }
 
-    // Mark elements as sorted
     for (let idx: number = left; idx <= right; idx++) {
       sorted.add(idx);
     }
   }
 
-  // Java-style recursive helper method
   function mergeSortRecursive(left: number, right: number): void {
     if (left < right) {
-      // Find the middle point (Java style)
       const mid: number = Math.floor((left + right) / 2);
-      
-      // Sort first and second halves recursively
       mergeSortRecursive(left, mid);
       mergeSortRecursive(mid + 1, right);
-      
-      // Merge the sorted halves
       merge(left, mid, right);
     }
   }
 
-  // Java-style method call
   mergeSortRecursive(0, arr.length - 1);
 
   steps.push({

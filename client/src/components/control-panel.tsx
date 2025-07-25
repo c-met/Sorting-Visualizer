@@ -77,6 +77,45 @@ export function ControlPanel({
         </CardContent>
       </Card>
 
+      {/* Sorting Controls */}
+      <Card>
+        <CardHeader className="pb-3 sm:pb-6">
+          <CardTitle className="text-base sm:text-lg">Sorting Controls</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-2 sm:space-y-3">
+          <Button 
+            onClick={isPlaying ? onPauseSorting : onStartSorting}
+            className="w-full"
+            size="sm"
+            style={{ backgroundColor: 'hsl(122, 39%, 49%)', color: 'white' }}
+          >
+            {isPlaying ? (
+              <>
+                <Pause className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+                <span className="text-xs sm:text-sm">Pause</span>
+              </>
+            ) : (
+              <>
+                <Play className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+                <span className="text-xs sm:text-sm">{isPaused ? 'Resume' : 'Start Sorting'}</span>
+              </>
+            )}
+          </Button>
+          
+          <Button 
+            onClick={onStopSorting}
+            className="w-full"
+            size="sm"
+            style={{ backgroundColor: 'hsl(14, 88%, 55%)', color: 'white' }}
+          >
+            <Square className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+            <span className="text-xs sm:text-sm">Stop & Reset</span>
+          </Button>
+          
+          {/* Step Forward button removed */}
+        </CardContent>
+      </Card>
+
       {/* Array Controls */}
       <Card>
         <CardHeader className="pb-3 sm:pb-6">
@@ -123,54 +162,6 @@ export function ControlPanel({
           <Button onClick={onGenerateArray} className="w-full" variant="outline" size="sm">
             <Shuffle className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
             <span className="text-xs sm:text-sm">Generate New Array</span>
-          </Button>
-        </CardContent>
-      </Card>
-
-      {/* Sorting Controls */}
-      <Card>
-        <CardHeader className="pb-3 sm:pb-6">
-          <CardTitle className="text-base sm:text-lg">Sorting Controls</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-2 sm:space-y-3">
-          <Button 
-            onClick={isPlaying ? onPauseSorting : onStartSorting}
-            className="w-full"
-            size="sm"
-            style={{ backgroundColor: 'hsl(122, 39%, 49%)', color: 'white' }}
-          >
-            {isPlaying ? (
-              <>
-                <Pause className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-                <span className="text-xs sm:text-sm">Pause</span>
-              </>
-            ) : (
-              <>
-                <Play className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-                <span className="text-xs sm:text-sm">{isPaused ? 'Resume' : 'Start Sorting'}</span>
-              </>
-            )}
-          </Button>
-          
-          <Button 
-            onClick={onStopSorting}
-            className="w-full"
-            size="sm"
-            style={{ backgroundColor: 'hsl(14, 88%, 55%)', color: 'white' }}
-          >
-            <Square className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-            <span className="text-xs sm:text-sm">Stop & Reset</span>
-          </Button>
-          
-          <Button 
-            onClick={onStepForward}
-            disabled={!canStepForward || isPlaying}
-            className="w-full"
-            variant="outline"
-            size="sm"
-          >
-            <SkipForward className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-            <span className="text-xs sm:text-sm">Step Forward</span>
           </Button>
         </CardContent>
       </Card>
