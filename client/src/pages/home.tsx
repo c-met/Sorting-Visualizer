@@ -88,7 +88,7 @@ export default function Home() {
                           </svg>
                         </a>
                         {/* Gmail Icon */}
-                        <a href="mailto:soumikgh60@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Gmail">
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=soumikgh60@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Gmail">
                           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" className="text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-400 transition-colors">
                             <path d="M2 4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4zm2 0v.01L12 13l8-8.99V4H4zm16 2.41l-7.29 7.3a1 1 0 0 1-1.42 0L4 6.41V20h16V6.41z"/>
                           </svg>
@@ -108,7 +108,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="lg:col-span-3 order-1 lg:order-2">
+          <div className="lg:col-span-3 order-1 lg:order-2 flex flex-col">
             <Card className="mb-4 sm:mb-6">
               <CardContent className="p-3 sm:p-4">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
@@ -155,8 +155,8 @@ export default function Home() {
                 />
               </CardContent>
             </Card>
-            {/* New single-column grid at the bottom of the right column, with a large gap, hidden on mobile */}
-            <div className="hidden lg:grid grid-cols-1 gap-4 mt-24">
+            {/* New single-column grid at the bottom of the right column, aligned with array config bottom */}
+            <div className="hidden lg:grid grid-cols-1 gap-4 mt-auto">
               <Card>
           
                 <CardContent>
@@ -172,7 +172,7 @@ export default function Home() {
                           </svg>
                         </a>
                         {/* Gmail Icon */}
-                        <a href="mailto:soumikgh60@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Gmail">
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=soumikgh60@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Gmail">
                           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" className="text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-400 transition-colors">
                             <path d="M2 4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4zm2 0v.01L12 13l8-8.99V4H4zm16 2.41l-7.29 7.3a1 1 0 0 1-1.42 0L4 6.41V20h16V6.41z"/>
                           </svg>

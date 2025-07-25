@@ -18,7 +18,7 @@ export const algorithms: Record<string, AlgorithmInfo> = {
   bubble: {
     name: "bubble",
     displayName: "Bubble Sort",
-    description: "Compares adjacent elements and swaps them if they're in wrong order.",
+    description: "Compares elements and swaps. if they're in wrong order.",
     timeComplexity: "O(n²)",
     spaceComplexity: "O(1)"
   },
